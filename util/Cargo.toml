@@ -13,3 +13,4 @@ cached = { version = "0.56.0", features = [
   "disk_store",
   "async",
 ] }
+cargo-generate = "0.23.7"
