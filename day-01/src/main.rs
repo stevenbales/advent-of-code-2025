@@ -16,8 +16,8 @@ async fn main() -> Result<()> {
     let part1_result = day_01::part1(&input);
     println!("Day {}: Part 1: {:?}", day, part1_result);
 
-    // let part2_result = day_01::part2(&input);
-    // println!("Day {}: Part 2: {:?}", day, part2_result);
+    let part2_result = day_01::part2(&input);
+    println!("Day {}: Part 2: {:?}", day, part2_result);
 
     Ok(())
 }

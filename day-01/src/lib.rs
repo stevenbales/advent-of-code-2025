@@ -21,21 +21,42 @@ pub fn part1(input: &str) -> String {
     let instructions = parse_input(input);
     let mut position = 50;
     let mut number_of_zeroes = 0;
-    println!("{:?}", instructions);
 
     for instruction in instructions {
         position = wrap_position(position + instruction);
-        println!("Current position: {}", position);
         if position == 0 {
-            println!("Found a zero");
             number_of_zeroes += 1;
         }
     }
     return number_of_zeroes.to_string();
 }
 
-pub fn part2(input: &str) -> &str {
-    todo!("Implement part 2");
+pub fn part2(input: &str) -> String {
+    let instructions = parse_input(input);
+    let mut position = 50;
+    let mut number_of_zeroes = 0;
+
+    for instruction in instructions {
+        for _ in 0..instruction.abs() {
+            if instruction > 0 {
+                position += 1;
+                if position > 99 {
+                    position = 0;
+                }
+            } else {
+                position -= 1;
+                if position < 0 {
+                    position = 99;
+                }
+            }
+
+            if position == 0 {
+                number_of_zeroes += 1;
+            }
+        }
+    }
+
+    number_of_zeroes.to_string()
 }
 
 #[cfg(test)]
@@ -65,13 +86,11 @@ L66
         assert_eq!(result, expected);
     }
 
-    //     #[test]
-    //     fn test_part2() {
-    //         let input = r#""#;
+    #[test]
+    fn test_part2() {
+        let expected = "2";
 
-    //         let expected = r#""#;
-
-    //         let result = part2(input);
-    //         assert_eq!(result, expected);
-    //     }
+        let result = part2(EXAMPLE_INPUT);
+        assert_eq!(result, expected);
+    }
 }
